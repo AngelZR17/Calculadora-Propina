@@ -51,6 +51,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Switch
 
 class MainActivity : ComponentActivity() {
@@ -79,7 +81,9 @@ fun TipTimeLayout() {
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
     val tip = calculateTip(amount, tipPercent, roundUp)
     Column(
-        modifier = Modifier.padding(40.dp),
+        modifier = Modifier
+            .padding(40.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -170,7 +174,9 @@ fun RoundTheTipRow(roundUp: Boolean, onRoundUpChanged: (Boolean) -> Unit, modifi
     ) {
         Text(text = stringResource(R.string.round_up_tip))
         Switch(
-            modifier = modifier.fillMaxWidth().wrapContentWidth(Alignment.End),
+            modifier = modifier
+                .fillMaxWidth()
+                .wrapContentWidth(Alignment.End),
             checked = roundUp, onCheckedChange = onRoundUpChanged,
         )
     }
