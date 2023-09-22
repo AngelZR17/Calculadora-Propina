@@ -29,7 +29,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Icon
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import com.angel.cuadricula.data.DataSource
 
 
@@ -72,10 +75,23 @@ fun CuadriculaCard(topic: Topic, modifier: Modifier = Modifier) {
                         contentScale = ContentScale.Crop
                     )
                 }
+                Column {
                     Text(
-                        text = LocalContext.current.getString(topic.name),
-                        modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.headlineSmall)
+                        text = stringResource(id = topic.name),
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(
+                            start = dimensionResource(R.dimen.padding_medium), end = dimensionResource(R.dimen.padding_medium), top = dimensionResource(R.dimen.padding_medium), bottom = dimensionResource(R.dimen.padding_small)
+                        )
+                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_grain),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(start = dimensionResource(R.dimen.padding_medium))
+                        )
+                    }
+                }
             }
         }
     }
