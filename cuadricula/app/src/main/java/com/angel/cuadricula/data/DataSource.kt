@@ -4,8 +4,7 @@ import com.angel.cuadricula.R
 import com.angel.cuadricula.model.Topic
 
 object DataSource {
-    fun loadTopics(): List<Topic> {
-        return listOf<Topic>(
+    val loadTopics = listOf(
         Topic(R.string.architecture, 58, R.drawable.architecture),
         Topic(R.string.crafts, 121, R.drawable.crafts),
         Topic(R.string.business, 78, R.drawable.business),
@@ -21,5 +20,4 @@ object DataSource {
         Topic(R.string.photography, 321, R.drawable.photography),
         Topic(R.string.tech, 118, R.drawable.tech)
     )
-    }
 }

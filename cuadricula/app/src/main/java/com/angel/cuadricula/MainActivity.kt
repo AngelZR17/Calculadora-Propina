@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.angel.cuadricula.ui.theme.CuadriculaTheme
 import com.angel.cuadricula.model.Topic
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,6 +29,9 @@ import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
@@ -46,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CuadriculaApp()
+                    CuadriculaApp(modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)))
                 }
             }
         }
@@ -54,10 +58,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CuadriculaApp() {
-    CuadriculaList(
-        topicList = DataSource.loadTopics()
-    )
+fun CuadriculaApp(modifier: Modifier = Modifier) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        modifier = modifier)
+    {
+        items(DataSource.loadTopics) { topic ->
+            CuadriculaCard(topic)
+        }
+    }
 }
 
 @Composable
@@ -102,6 +113,7 @@ fun CuadriculaCard(topic: Topic, modifier: Modifier = Modifier) {
     }
 }
 
+/*
 @Preview
 @Composable
 private fun CuadriculaCardPreview() {
@@ -118,4 +130,4 @@ fun CuadriculaList(topicList: List<Topic>, modifier: Modifier = Modifier) {
             )
         }
     }
-}
+}*/
