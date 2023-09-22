@@ -15,6 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.angel.cuadricula.ui.theme.CuadriculaTheme
 import com.angel.cuadricula.model.Topic
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.platform.LocalContext
@@ -57,19 +61,22 @@ fun CuadriculaApp() {
 fun CuadriculaCard(topic: Topic, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
         Column {
-            Image(
-                painter = painterResource(topic.imageRes),
-                contentDescription = stringResource(topic.name),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(194.dp),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = LocalContext.current.getString(topic.name),
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.headlineSmall
-            )
+            Row {
+                Box {
+                    Image(
+                        painter = painterResource(id = topic.imageRes),
+                        contentDescription = null,
+                        modifier = modifier
+                            .size(width = 68.dp, height = 68.dp)
+                            .aspectRatio(1f),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+                    Text(
+                        text = LocalContext.current.getString(topic.name),
+                        modifier = Modifier.padding(16.dp),
+                        style = MaterialTheme.typography.headlineSmall)
+            }
         }
     }
 }
