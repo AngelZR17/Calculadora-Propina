@@ -90,6 +90,11 @@ fun CuadriculaCard(topic: Topic, modifier: Modifier = Modifier) {
                             modifier = Modifier
                                 .padding(start = dimensionResource(R.dimen.padding_medium))
                         )
+                        Text(
+                            text = topic.availableCourses.toString(),
+                            style = MaterialTheme.typography.labelMedium,
+                            modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_small))
+                        )
                     }
                 }
             }
